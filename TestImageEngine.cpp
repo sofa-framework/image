@@ -1,6 +1,6 @@
 /******************************************************************************
-*       SOFA, Simulation Open-Framework Architecture, version 1.0 beta 4      *
-*                (c) 2006-2009 MGH, INRIA, USTL, UJF, CNRS                    *
+*       SOFA, Simulation Open-Framework Architecture, version 1.0 RC 1        *
+*                (c) 2006-2011 MGH, INRIA, USTL, UJF, CNRS                    *
 *                                                                             *
 * This library is free software; you can redistribute it and/or modify it     *
 * under the terms of the GNU Lesser General Public License as published by    *
@@ -22,9 +22,8 @@
 *                                                                             *
 * Contact information: contact@sofa-framework.org                             *
 ******************************************************************************/
-#define SOFA_IMAGE_IMAGECONTAINER_CPP
-
-#include "ImageContainer.h"
+#define SOFA_COMPONENT_ENGINE_TESTIMAGEENGINE_CPP
+#include "TestImageEngine.h"
 #include <sofa/core/ObjectFactory.h>
 
 namespace sofa
@@ -33,47 +32,45 @@ namespace sofa
 namespace component
 {
 
-namespace container
+namespace engine
 {
+using namespace sofa::defaulttype;
 
-using namespace defaulttype;
+SOFA_DECL_CLASS(TestImageEngine)
 
+int TestImageEngineClass = core::RegisterObject("TestImageEngine to test engine with data image")
 
-SOFA_DECL_CLASS (ImageContainer)
-// Register in the Factory
-
-int ImageContainerClass = core::RegisterObject ( "Image Container" )
-        .add<ImageContainer<ImageUC> >(true)
-        .add<ImageContainer<ImageD> >()
+        .add<TestImageEngine<ImageUC> >(true)
+        .add<TestImageEngine<ImageD> >()
 #ifdef BUILD_ALL_IMAGE_TYPES
-        .add<ImageContainer<ImageC> >()
-        .add<ImageContainer<ImageI> >()
-        .add<ImageContainer<ImageUI> >()
-        .add<ImageContainer<ImageS> >()
-        .add<ImageContainer<ImageUS> >()
-        .add<ImageContainer<ImageL> >()
-        .add<ImageContainer<ImageUL> >()
-        .add<ImageContainer<ImageF> >()
-        .add<ImageContainer<ImageB> >()
+        .add<TestImageEngine<ImageC> >()
+        .add<TestImageEngine<ImageI> >()
+        .add<TestImageEngine<ImageUI> >()
+        .add<TestImageEngine<ImageS> >()
+        .add<TestImageEngine<ImageUS> >()
+        .add<TestImageEngine<ImageL> >()
+        .add<TestImageEngine<ImageUL> >()
+        .add<TestImageEngine<ImageF> >()
+        .add<TestImageEngine<ImageB> >()
 #endif
         ;
 
-template class SOFA_IMAGE_API ImageContainer<ImageUC>;
-template class SOFA_IMAGE_API ImageContainer<ImageD>;
+template class TestImageEngine<ImageUC>;
+template class TestImageEngine<ImageD>;
 #ifdef BUILD_ALL_IMAGE_TYPES
-template class SOFA_IMAGE_API ImageContainer<ImageC>;
-template class SOFA_IMAGE_API ImageContainer<ImageI>;
-template class SOFA_IMAGE_API ImageContainer<ImageUI>;
-template class SOFA_IMAGE_API ImageContainer<ImageS>;
-template class SOFA_IMAGE_API ImageContainer<ImageUS>;
-template class SOFA_IMAGE_API ImageContainer<ImageL>;
-template class SOFA_IMAGE_API ImageContainer<ImageUL>;
-template class SOFA_IMAGE_API ImageContainer<ImageF>;
-template class SOFA_IMAGE_API ImageContainer<ImageB>;
+template class TestImageEngine<ImageC>;
+template class TestImageEngine<ImageI>;
+template class TestImageEngine<ImageUI>;
+template class TestImageEngine<ImageS>;
+template class TestImageEngine<ImageUS>;
+template class TestImageEngine<ImageL>;
+template class TestImageEngine<ImageUL>;
+template class TestImageEngine<ImageF>;
+template class TestImageEngine<ImageB>;
 #endif
-
-} // namespace container
+} // namespace constraint
 
 } // namespace component
 
 } // namespace sofa
+
