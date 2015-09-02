@@ -22,18 +22,17 @@
 *                                                                             *
 * Contact information: contact@sofa-framework.org                             *
 ******************************************************************************/
-#ifndef IMAGE_GUI_INIT_H
-#define IMAGE_GUI_INIT_H
+#ifndef IMAGE_CONFIG_H
+#define IMAGE_CONFIG_H
 
 #include <sofa/helper/system/config.h>
 
 #define BUILD_ALL_IMAGE_TYPES // comment to reduce compilation time
 
-#ifdef SOFA_BUILD_IMAGE_GUI
-#define SOFA_IMAGE_GUI_API SOFA_EXPORT_DYNAMIC_LIBRARY
+#ifdef SOFA_BUILD_IMAGE
+#  define SOFA_IMAGE_API SOFA_EXPORT_DYNAMIC_LIBRARY
 #else
-#define SOFA_IMAGE_GUI_API SOFA_IMPORT_DYNAMIC_LIBRARY
+#  define SOFA_IMAGE_API SOFA_IMPORT_DYNAMIC_LIBRARY
 #endif
 
-#endif //IMAGE_GUI_INIT_H
-
+#endif

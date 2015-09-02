@@ -22,93 +22,17 @@
 *                                                                             *
 * Contact information: contact@sofa-framework.org                             *
 ******************************************************************************/
-#ifndef SOFA_IMAGE_AVERAGECATCHALLVECTOR_H
-#define SOFA_IMAGE_AVERAGECATCHALLVECTOR_H
+#ifndef IMAGE_GUI_CONFIG_H
+#define IMAGE_GUI_CONFIG_H
 
-#include <image/image_gui/config.h>
-#include <sofa/core/DataEngine.h>
-#include <sofa/core/objectmodel/BaseObject.h>
-#include <sofa/defaulttype/Vec.h>
+#include <sofa/helper/system/config.h>
 
-#include <sofa/helper/OptionsGroup.h>
+#define BUILD_ALL_IMAGE_TYPES // comment to reduce compilation time
 
-#include "ImageContainer.h"
+#ifdef SOFA_BUILD_IMAGE_GUI
+#  define SOFA_IMAGE_GUI_API SOFA_EXPORT_DYNAMIC_LIBRARY
+#else
+#  define SOFA_IMAGE_GUI_API SOFA_IMPORT_DYNAMIC_LIBRARY
+#endif
 
-namespace sofa
-{
-namespace component
-{
-namespace engine
-{
-
-template <class _Type>
-class SOFA_IMAGE_GUI_API AverageCatchAllVector : public core::DataEngine
-{
-public:
-    typedef core::DataEngine Inherited;
-    SOFA_CLASS(SOFA_TEMPLATE(AverageCatchAllVector,_Type),Inherited);
-
-    typedef _Type Type;
-
-    AverageCatchAllVector()    :   Inherited()
-        ,_data(initData(&_data,"data_out","data_out"))
-        ,_data1(initData(&_data1,"data_in1","data_in1"))
-        ,_data2(initData(&_data2,"data_in2","data_in2"))
-
-    {
-
-    }
-
-    ~AverageCatchAllVector() {}
-
-    void init()
-    {
-        reinit();
-    }
-
-    void reinit()
-    {
-        vector<Type> data;
-        const vector<Type> &data1 = _data1.getValue();
-        const vector<Type> &data2 = _data2.getValue();
-
-
-        for(size_t i=0;i<data1.size();i++)
-        {
-            data.push_back((data1[i]+data2[i])/2);
-        }
-
-        _data.setValue(data);
-
-    }
-
-    Data< vector<Type> > _data;
-    Data< vector<Type> > _data1;
-    Data< vector<Type> > _data2;
-
-protected:
-
-    virtual void update()
-    {
-    }
-
-public:
-
-   /* virtual void draw(const core::visual::VisualParams*)
-    {
-    }
-
-    void handleEvent(core::objectmodel::Event *event)
-    {
-    }*/
-};
-
-
-
-
-
-} // namespace engine
-} // namespace component
-} // namespace sofa
-
-#endif // SOFA_IMAGE_AverageCatchAllVector_H
+#endif
