@@ -25,11 +25,13 @@
 #ifndef IMAGE_CONFIG_H
 #define IMAGE_CONFIG_H
 
-#include <sofa/helper/system/config.h>
+#include <sofa/config.h>
 
-#define BUILD_ALL_IMAGE_TYPES // comment to reduce compilation time
+#define IMAGE_MAJOR_VERSION ${IMAGE_MAJOR_VERSION}
+#define IMAGE_MINOR_VERSION ${IMAGE_MINOR_VERSION}
 
 #ifdef SOFA_BUILD_IMAGE
+#  define SOFA_TARGET image
 #  define SOFA_IMAGE_API SOFA_EXPORT_DYNAMIC_LIBRARY
 #else
 #  define SOFA_IMAGE_API SOFA_IMPORT_DYNAMIC_LIBRARY
